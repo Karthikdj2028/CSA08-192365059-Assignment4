@@ -1,0 +1,23 @@
+"""Merge duplicate registrations using a dictionary and sets."""
+
+
+def merge_registrations(records):
+    merged = {}
+    for record in records:
+        reg_no = record["reg_no"]
+        if reg_no not in merged:
+            merged[reg_no] = {
+                "reg_no": reg_no,
+                "name": record["name"],
+                "department": record["department"],
+                "emails": set(),
+                "events": set(),
+                "sources": set()
+            }
+
+        # Sets remove duplicate e-mails and event names.
+        merged[reg_no]["emails"].add(record["email"])
+        merged[reg_no]["events"].update(record["events"])
+        merged[reg_no]["sources"].add(record["department"])
+
+    return merged
