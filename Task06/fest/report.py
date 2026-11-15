@@ -35,7 +35,8 @@ def write_outputs(merged, errors, output_folder):
 
     with open(output / "summary.txt", "w", encoding="utf-8") as file:
         file.write(f"Unique students: {len(merged)}\n")
-        file.write(f"Valid registration rows: {sum(len(x['sources']) for x in merged.values())}\n")
+        valid_rows = sum(item["row_count"] for item in merged.values())
+        file.write(f"Valid registration rows: {valid_rows}\n")
         file.write(f"Events: {len(event_people)}\n")
         for event in sorted(event_people):
             file.write(f"{event}: {len(set(event_people[event]))} participants\n")

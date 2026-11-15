@@ -12,12 +12,13 @@ def merge_registrations(records):
                 "department": record["department"],
                 "emails": set(),
                 "events": set(),
-                "sources": set()
+                "sources": set(),
+                "row_count": 0
             }
 
-        # Sets remove duplicate e-mails and event names.
         merged[reg_no]["emails"].add(record["email"])
         merged[reg_no]["events"].update(record["events"])
         merged[reg_no]["sources"].add(record["department"])
+        merged[reg_no]["row_count"] += 1
 
     return merged
