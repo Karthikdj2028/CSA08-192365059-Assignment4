@@ -1,11 +1,14 @@
-"""Main script that connects the three modules."""
+"""Main module joins reading, statistics and reporting."""
 from pathlib import Path
-from reader import RECORDS
-from stats import three_day_absentees
-from report import write_report
+from reader import read_records
+from stats import attendance_percentages, three_day_absentees
+from report import write_reports
 
 if __name__ == "__main__":
-    result = three_day_absentees(RECORDS)
-    output = Path(__file__).parent / "output" / "three_day_absent.txt"
-    write_report(result, output)
-    print("Three consecutive absence list:", result)
+    base = Path(__file__).parent
+    records = read_records(base.parent / "input" / "attendance.csv")
+    percentages = attendance_percentages(records)
+    absentees = three_day_absentees(records)
+    write_reports(percentages, absentees, base.parent / "output")
+    print("Attendance percentages:", percentages)
+    print("Absent for three consecutive days:", absentees)
