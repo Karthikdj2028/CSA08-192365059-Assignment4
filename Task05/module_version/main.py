@@ -4,9 +4,9 @@ from attendance_utils import read_records, attendance_percentages, three_day_abs
 
 if __name__ == "__main__":
     base = Path(__file__).parent
-    records = read_records(base / "input" / "attendance.csv")
+    records = read_records(base.parent / "input" / "attendance.csv")
     percentages = attendance_percentages(records)
     absentees = three_day_absentees(records)
-    write_reports(percentages, absentees, base / "output")
+    write_reports(percentages, absentees, base.parent / "output")
     print("Attendance percentages:", percentages)
     print("Absent for three consecutive days:", absentees)
