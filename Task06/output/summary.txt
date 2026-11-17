@@ -1,0 +1,8 @@
+Unique students: 4
+Valid registration rows: 5
+Events: 5
+Dance: 2 participants
+Drama: 2 participants
+Music: 1 participants
+Painting: 1 participants
+Singing: 1 participants
